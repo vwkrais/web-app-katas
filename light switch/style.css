@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+
+  /* night-off */
+}
+
+body {
+  background-color: black;
+  transition 2000ms;
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+button {
+  background-color: black;
+  border: 6px solid white;
+  border-radius: 5%;
+  color: white;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 40px 20px yellow;
+  transition 2000ms;
+}
+
+/* day-on */
+.buttonDay {
+  background-color: blanchedalmond;
+  color: black;
+  box-shadow: 0px 0px 40px 20px blanchedalmond;
+}
+
+.bodyDay1 {
+  background-color: blanchedalmond;
+}

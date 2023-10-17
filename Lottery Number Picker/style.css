@@ -1,0 +1,69 @@
+* {
+  border: 2px solid red;
+}
+
+html {
+  font-family: "Kanit", sans-serif;
+  font-size: 18px;
+}
+body {
+  background-color: blueviolet;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  background-color: blueviolet;
+}
+
+.first-line {
+  justify-content: space-between;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: aquamarine;
+  font-size: 3rem;
+  padding-left: 2rem;
+}
+
+.button-box {
+  position: relative;
+  top: 8px;
+  width: 30vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons {
+  border: 4px solid yellowgreen;
+  background-color: orange;
+  font-size: 1rem;
+}
+
+.second-line {
+  display: flex;
+  justify-content: center;
+}
+
+.number-block {
+  height: 50vh;
+  right: 25%;
+  width: 50vw;
+  justify-content: space-around;
+}
+
+.lottery-number {
+  position: relative;
+  top: -5vh;
+  height: 5vh;
+  width: 3vh;
+  border: 4px solid yellowgreen;
+  background-color: blue;
+  padding: 10px 20px;
+  color: wheat;
+  text-align: center;
+  font-size: 1.8rem;
+  /* line-height: 4.5vh; */
+}

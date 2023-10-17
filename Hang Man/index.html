@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hang Man</title>
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Oswald:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <audio id="buzzer">
+        <source src="buzzer.mp3" type="audio/mp3">
+    </audio>
+    <header>
+        <div id="active">Active</div>
+        <div class="attemps">FAILS:<span id="attemps"> 0/10</span></div>
+        <button id="new_game">NEW GAME</button>
+    </header>
+    <main>
+        <div hidden id="winner" class="flash">You are a winner!</div>
+        <div hidden id="loser" class="flash">You lost! - Try again!</div>
+        <div id="guess"></div>
+        <section>
+            <div class="keyboard">
+                <button id="buttonA" class="key">a</button><button id="buttonB" class="key">b</button><button
+                    id="buttonC" class="key">c</button><button id="buttonD" class="key">d</button><button id="buttonE"
+                    class="key">e</button><button id="buttonF" class="key">f</button><button id="buttonG"
+                    class="key">g</button><button id="buttonH" class="key">h</button><button id="buttonI"
+                    class="key">i</button><button id="buttonJ" class="key">j</button><button id="buttonK"
+                    class="key">k</button><button id="buttonL" class="key">l</button><button id="buttonM"
+                    class="key">m</button>
+            </div>
+            <div class="keyboard">
+                <button id="buttonN" class="key">n</button><button id="buttonO" class="key">o</button><button
+                    id="buttonP" class="key">p</button><button id="buttonQ" class="key">q</button><button id="buttonR"
+                    class="key">r</button><button id="buttonS" class="key">s</button><button id="buttonT"
+                    class="key">t</button><button id="buttonU" class="key">u</button><button id="buttonV"
+                    class="key">v</button><button id="buttonW" class="key">w</button><button id="buttonX"
+                    class="key">x</button><button id="buttonY" class="key">y</button><button id="buttonZ"
+                    class="key">z</button>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
