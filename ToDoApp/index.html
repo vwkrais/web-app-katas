@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoApp</title>
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <!-- Milligram CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h2>ToDoApp</h2>
+    </header>
+    <main>
+        <article id="input-article">
+            <h3>New Item:</h3>
+            <section class="input-section">
+                <input type="text" id="text-input">
+                <button id="btn-add">Add</button>
+            </section>
+        </article>
+        <article id="filter-article">
+            <h3>Filter & Options</h3>
+            <section class="filter-section">
+                <label class="filter-btn" for="all">
+                    <input type="radio" name="filter" class="radioBtn" id="btn-all" checked> All
+                </label>
+                <label class="filter-btn" for="all">
+                    <input type="radio" name="filter" class="radioBtn" id="btn-open"> Open
+                </label>
+                <label class="filter-btn" for="all">
+                    <input type="radio" name="filter" class="radioBtn" id="btn-done"> Done
+                </label>
+                <button id="btn-remove">Remove done Todos</button>
+            </section>
+        </article>
+        <article id="list-article">
+            <h3>List of ToDos:</h3>
+            <section id="list-section">
+                <ul id="todolist"></ul>
+            </section>
+        </article>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
