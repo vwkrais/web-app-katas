@@ -5,9 +5,7 @@ const btnQuote = document.querySelector("#quote-btn");
 
 function getQuote() {
   fetch(API_URL)
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
     .then((data) => {
       quote.innerHTML = "";
       author.innerHTML = "";

@@ -122,17 +122,16 @@ function renderState(todos) {
       } else {
         todo.done = true;
       }
-      fetch(`${API_URL}/${todo.id}`),
-        {
-          method: "PUT",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(todo),
-        }
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-          })
-          .then(() => fromAPI());
+      fetch(`${API_URL}/${todo.id}`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(todo),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          fromAPI();
+        });
     });
     li.appendChild(checkbox);
     list.appendChild(li);
