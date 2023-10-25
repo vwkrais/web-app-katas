@@ -18,7 +18,7 @@ let alreadyGuessed = [];
 const keyboard = document.querySelectorAll(".key");
 const span = document.querySelector("span");
 let fails = 0;
-const newGameButton = document.querySelector("#new_game");
+const newGameButton = document.querySelector("#new-game");
 newGameButton.addEventListener("click", startNewGame);
 const winner = document.querySelector("#winner");
 const active = document.querySelector("#active");
@@ -75,11 +75,11 @@ for (let letter of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
   let button = document.querySelector(`#button${letter}`);
   const buzzer = document.getElementById("buzzer");
   button.addEventListener("click", () => {
+    button.disabled = true;
+    button.classList.add("disabled");
     if (word2Guess.includes(letter.toLowerCase())) {
       alreadyGuessed.push(letter.toLowerCase());
       buildGuessContainer();
-      button.disabled = true;
-      button.classList.add("disabled");
       if (winner.hidden === false) {
         keyboard.forEach((element) => {
           element.disabled = true;
@@ -87,8 +87,6 @@ for (let letter of "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
       }
     } else {
       buzzer.play();
-      button.disabled = true;
-      button.classList.add("disabled");
       fails++;
       span.innerText = ` ${fails}/10`;
       if (fails === 10) {

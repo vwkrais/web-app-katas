@@ -18,6 +18,11 @@ header {
   justify-content: space-around;
   padding: 1rem;
   background-color: hotpink;
+  align-items: center;
+}
+
+#new-game {
+  padding: 0.3rem;
 }
 /* ==============center-piece================= */
 

@@ -1,5 +1,5 @@
-// todos are stored in an array. todos are objects
-//object keys: todo: string, done: bolean
+//URL of API:
+const API_URL = "http://localhost:4730/todos";
 
 //Input-Options:
 let todoInputField = document.querySelector("#text-input");
@@ -9,34 +9,34 @@ const btnDone = document.querySelector("#btn-done");
 const btnOpen = document.querySelector("#btn-open");
 const btnRemove = document.querySelector("#btn-remove");
 
+// elements that change if page is rerendered:
+const list = document.querySelector("#todolist");
+
 //Data-storage:
 let todoArrayOut = []; //todos form local storage
+let todoArrayIn = [];
 let filteredTodos = [];
 const filterValue = Boolean;
 
-// const changable locations on rendered page;
-const list = document.querySelector("#todolist");
-
-// =======add new todo to localStorage=======
-btnAdd.addEventListener("click", () => addTodo());
-
-//or if (event.keyCode === 13) = ist der keycode für enter)
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    if (todoInputField.value !== "") addTodo();
-  }
-});
-
-function addTodo() {
-  let todoArrayIn = todoArrayOut;
-  const textTodo = todoInputField.value;
-  const todo = { description: textTodo, done: false };
-  todoArrayIn.push(todo);
-  todoInputField.value = "";
-  localStorage.setItem("todos", JSON.stringify(todoArrayIn));
-  todoArrayOut = JSON.parse(localStorage.getItem("todos"));
-  renderState(todoArrayOut);
+function fromAPI() {
+  fetch(API_URL)
+    .then((response) => response.json())
+    .then((todosFromAPI) => {
+      todoArrayOut = todosFromAPI;
+      console.log(todoArrayOut);
+      renderState(todoArrayOut);
+    });
+  btnAll.checked = true;
 }
+// =======add new todo to localStorage by click or pressing enter=======
+
+// todoArrayIn = todoArrayOut;
+// const textTodo = todoInputField.value;
+// const todo = { description: textTodo, done: false };
+// todoArrayIn.push(todo);
+// todoInputField.value = "";
+// localStorage.setItem("todos", JSON.stringify(todoArrayIn));
+// todoArrayOut = JSON.parse(localStorage.getItem("todos"));
 
 btnAll.addEventListener("change", () => {
   renderState(todoArrayOut);
@@ -53,13 +53,50 @@ btnDone.addEventListener("change", () => {
 });
 
 btnRemove.addEventListener("click", () => {
-  filter(false);
-  localStorage.setItem("todos", JSON.stringify(filteredTodos));
-  todoArrayOut = JSON.parse(localStorage.getItem("todos"));
-  renderState(todoArrayOut);
-  btnAll.checked = true;
+  todoArrayOut.forEach((todo) => {
+    if (todo.done === true) {
+      fetch(`${API_URL}/${todo.id}`, {
+        method: "DELETE",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          fromAPI();
+        });
+    }
+    btnAll.checked = true;
+  });
 });
 
+// localStorage.setItem("todos", JSON.stringify(filteredTodos));
+// todoArrayOut = JSON.parse(localStorage.getItem("todos"));
+
+btnAdd.addEventListener("click", () => addTodo());
+
+//or if (event.keyCode === 13) = ist der keycode für enter)
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    if (todoInputField.value !== "") addTodo();
+  }
+});
+
+function addTodo() {
+  const newTodo = {
+    description: `${todoInputField.value}`,
+    done: false,
+  };
+  fetch(API_URL, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(newTodo),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      fromAPI();
+    });
+  todoInputField.value = "";
+}
 //filterValue receive from Filterbutton Selection
 function filter(filterValue) {
   filteredTodos = todoArrayOut.filter((todo) => todo.done === filterValue);
@@ -85,14 +122,27 @@ function renderState(todos) {
       } else {
         todo.done = true;
       }
-      localStorage.setItem("todos", JSON.stringify(todoArrayOut));
+      fetch(`${API_URL}/${todo.id}`),
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(todo),
+        }
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .then(() => fromAPI());
     });
     li.appendChild(checkbox);
     list.appendChild(li);
+    // localStorage.setItem("todos", JSON.stringify(todoArrayOut));
+    //
   });
 }
 
-if (localStorage.getItem("todos") !== null) {
-  todoArrayOut = JSON.parse(localStorage.getItem("todos"));
-  renderState(todoArrayOut);
-}
+fromAPI();
+// if (localStorage.getItem("todos") !== null) {
+//   todoArrayOut = JSON.parse(localStorage.getItem("todos"));
+//   renderState(todoArrayOut);
+// }
